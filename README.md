@@ -119,19 +119,19 @@ Character sheets are defined by the following high-level concepts
 - Display result of roll
 
 ## Component: AttributeControls for a single party member
-- Attrs for a single party member and a setter function
-- keep track of total attribute points since we need to maintain a maximum
-- Increment and decrement buttons and methods
-- Display attributes, controls, modifiers, and total points for all combined
+- DONE - Attrs for a single party member and a setter function
+- DONE - keep track of total attribute points since we need to maintain a maximum
+- DONE - Increment and decrement buttons and methods
+- DONE - Display attributes, controls, modifiers, and total points for all combined
 
 ## Component: ClassList for a single party member
-- Attrs for a single party member
-- State for the class that we are viewing details for, method to update class that we are viewing
-- meetsRequirements method to check if the party member meets the requirements for the class
-- Render each class in list
-- Button to toggle view details for each class
-- Display details if toggled
-- Css class to indicate if the class requirements are met or not
+- DONE - Attrs for a single party member
+- DONE - State for the class that we are viewing details for, method to update class that we are viewing
+- DONE - meetsRequirements method to check if the party member meets the requirements for the class
+- DONE - Render each class in list
+- DONE - Button to toggle view details for each class
+- DONE - Display details if toggled
+- DONE - Css class to indicate if the class requirements are met or not
 
 ## Component: SkillControls for a single party member
 - Takes attrs, skills, and a setter function for a single party member

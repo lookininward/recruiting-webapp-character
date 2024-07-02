@@ -2,6 +2,7 @@ import "./App.css";
 import { useMemo, useReducer, useCallback } from "react";
 import Topbar from "./components/topbar";
 import AttributeControls from "./components/AttributeControls";
+import ClassList from "./components/ClassList";
 import { ATTRIBUTE_LIST, SKILL_LIST } from "./consts";
 
 export const defaultAttrs = ATTRIBUTE_LIST.reduce(
@@ -99,7 +100,7 @@ function App() {
                 onUpdateCharacterAttrs(character.id, attrs)
               }
             />
-            <div>Classes</div>
+            <ClassList attributes={character.attributes} />
             <div>Skills</div>
           </div>
         </section>

@@ -59,3 +59,14 @@
 .item__modifier {
     margin: 0 2em;
 }
+
+/* Class List */
+.class-item {
+    padding: 1em;
+    background-color: var(--color-warning);
+    margin-bottom: 1em;
+}
+
+.class-item.class-item--met {
+    background-color: var(--color-success);
+}
