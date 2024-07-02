@@ -1,0 +1,15 @@
+:root {
+    --color-dark: hsl(220deg 13% 13%);
+    --color-light: white;
+    --color-warning: lightcoral;
+    --color-success: lightgreen;
+}
+
+/* Utils */
+.success {
+    color: var(--color-success);
+}
+
+.warning {
+    color: var(--color-warning);
+}
