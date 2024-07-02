@@ -1,4 +1,6 @@
 export const MAX_TOTAL_ATTR = 70;
+export const GIT_USERNAME = "lookininward";
+export const REQ_URL = `https://recruiting.verylongdomaintotestwith.ca/api/${GIT_USERNAME}/character`;
 
 export const ATTRIBUTE_LIST = [
     'Strength',

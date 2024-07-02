@@ -1,10 +1,10 @@
 import "./App.css";
-import { useMemo, useReducer, useCallback } from "react";
+import { useMemo, useReducer, useCallback, useEffect } from "react";
 import Topbar from "./components/topbar";
 import AttributeControls from "./components/AttributeControls";
 import ClassList from "./components/ClassList";
 import SkillControls from "./components/SkillControls";
-import { ATTRIBUTE_LIST, SKILL_LIST } from "./consts";
+import { ATTRIBUTE_LIST, SKILL_LIST, REQ_URL } from "./consts";
 
 export const defaultAttrs = ATTRIBUTE_LIST.reduce(
   (acc, attr) => ({ ...acc, [attr]: 0 }),
@@ -92,12 +92,50 @@ function App() {
 
   console.log("characters", characters);
 
+  const saveGame = async () => {
+    try {
+      const response = await fetch(REQ_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(characters),
+      });
+      await response.json();
+    } catch (error) {
+      console.error("saveGame fail", error);
+    }
+  };
+
+  const getGame = async () => {
+    try {
+      const response = await fetch(REQ_URL, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      // console.log("getGame success", data);
+      // todo: parse and set the characters to the game state
+    } catch (error) {
+      console.error("getGame fail", error);
+    }
+  };
+
+  // on initial load, get the game state and set it to the characters
+  // useEffect(() => {
+  //   getGame();
+  //   todo: set the characters to the game state
+  //   todo: don't add initial character if there are already characters
+  // }, []);
+
   return (
     <div className="App">
       <Topbar
         numCharacters={numCharacters}
         onClickAddCharacter={onClickAddCharacter}
-        onClickSaveGame={() => console.log("Save game")}
+        onClickSaveGame={saveGame}
       />
 
       {Object.values(characters)?.map((character) => (
