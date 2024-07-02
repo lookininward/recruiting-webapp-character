@@ -13,3 +13,12 @@
 .warning {
     color: var(--color-warning);
 }
+
+/* App */
+.topbar {
+    padding: 0 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--color-dark);
+  }

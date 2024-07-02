@@ -1,10 +1,14 @@
-import './App.css';
-
+import "./App.css";
+import Topbar from "./components/topbar";
 
 function App() {
   return (
     <div className="App">
-      App
+      <Topbar
+        numCharacters={3}
+        onClickAddCharacter={() => console.log("Add character")}
+        onClickSaveGame={() => console.log("Save game")}
+      />
     </div>
   );
 }
