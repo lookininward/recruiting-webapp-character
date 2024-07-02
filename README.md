@@ -90,17 +90,17 @@ Character sheets are defined by the following high-level concepts
 
 
 # General Approach
-- Tear out any boilerplate code that is not needed
+- DONE - Tear out any boilerplate code that is not needed
 
 ## CSS
-- Variables for basic colours
-- Utility classes to apply colours
+- DONE - Variables for basic colours
+- DONE - Utility classes to apply colours
 
 ## Component: App will be the parent container
 - We need to handle multiple party member and attributes and skills of reach
-- Reducer pattern with state object, faster key value lookup
-- Need actions: add party member, update member attributes, update member skills
-- Method: to create initial character object with default values
+- DONE - Reducer pattern with state object, faster key value lookup
+- DONE - Need actions: add party member, update member attributes, update member skills
+- DONE - Method: to create initial character object with default values
 - Var numCharacters: To keep track of number of party members
 - Method: save characters to api (save the entire state object)
 - Method: get characters from api (get the entire state object)
@@ -109,7 +109,7 @@ Character sheets are defined by the following high-level concepts
 - On initial render, get characters from api and set state
 
 ## Component: Topbar
-- Indicates number of party members, button to add new party member, button to save game
+- DONE - Indicates number of party members, button to add new party member, button to save game
 
 ## Component: SkillCheck 
 - For a single party member (selected by user or optimal selected by best fit)

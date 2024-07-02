@@ -76,6 +76,12 @@ function App() {
         onClickAddCharacter={onClickAddCharacter}
         onClickSaveGame={() => console.log("Save game")}
       />
+
+      {Object.values(characters)?.map((character) => (
+        <section key={character.id} className="character">
+          <h2 className="character__header">Character: {character.id}</h2>
+        </section>
+      ))}
     </div>
   );
 }
