@@ -1,9 +1,6 @@
 import { memo } from "react";
-import { MAX_TOTAL_ATTR, ATTRIBUTE_LIST } from "../consts.js";
-
-export const calculateModifier = (value) => {
-    return Math.floor((value - 10) / 2);
-  };
+import { MAX_TOTAL_ATTR, ATTRIBUTE_LIST } from "../consts";
+import { calculateModifier } from "../utils";
 
 const AttributeControls = memo(({ attributes, setAttributes }) => {
   const totalAttributes = Object.values(attributes).reduce(

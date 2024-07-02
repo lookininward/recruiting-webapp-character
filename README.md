@@ -134,9 +134,9 @@ Character sheets are defined by the following high-level concepts
 - DONE - Css class to indicate if the class requirements are met or not
 
 ## Component: SkillControls for a single party member
-- Takes attrs, skills, and a setter function for a single party member
-- Meed to calc maxSkill points based on attributes, skills and the skills modifier with the calc: 10 + 4 * attrModifier
-- Calc the total skill points used AND available
-- Increment and decrement buttons and methods
-- Display skills, controls, modifiers, and total points for all combined
-- Monitor and recalc skills if the attributes change
+- DONE - Takes attrs, skills, and a setter function for a single party member
+- DONE - Meed to calc maxSkill points based on attributes, skills and the skills modifier with the calc: 10 + 4 * attrModifier
+- DONE - Calc the total skill points used AND available
+- DONE - Increment and decrement buttons and methods
+- DONE - Display skills, controls, modifiers, and total points for all combined
+- DONE - Monitor and recalc skills if the attributes change

@@ -3,6 +3,7 @@ import { useMemo, useReducer, useCallback } from "react";
 import Topbar from "./components/topbar";
 import AttributeControls from "./components/AttributeControls";
 import ClassList from "./components/ClassList";
+import SkillControls from "./components/SkillControls";
 import { ATTRIBUTE_LIST, SKILL_LIST } from "./consts";
 
 export const defaultAttrs = ATTRIBUTE_LIST.reduce(
@@ -79,6 +80,16 @@ function App() {
     [dispatch]
   );
 
+  const onUpdateCharacterSkills = useCallback(
+    (id, skills) => {
+      dispatch({
+        type: "UPDATE_CHARACTER_SKILLS",
+        payload: { id, skills },
+      });
+    },
+    [dispatch]
+  );
+
   console.log("characters", characters);
 
   return (
@@ -101,7 +112,13 @@ function App() {
               }
             />
             <ClassList attributes={character.attributes} />
-            <div>Skills</div>
+            <SkillControls
+              attributes={character.attributes}
+              skills={character.skills}
+              setSkills={(skills) =>
+                onUpdateCharacterSkills(character.id, skills)
+              }
+            />
           </div>
         </section>
       ))}
