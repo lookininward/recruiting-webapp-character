@@ -1,6 +1,7 @@
 import "./App.css";
 import { useMemo, useReducer, useCallback } from "react";
 import Topbar from "./components/topbar";
+import AttributeControls from "./components/AttributeControls";
 import { ATTRIBUTE_LIST, SKILL_LIST } from "./consts";
 
 export const defaultAttrs = ATTRIBUTE_LIST.reduce(
@@ -67,6 +68,16 @@ function App() {
     });
   }, [dispatch]);
 
+  const onUpdateCharacterAttrs = useCallback(
+    (id, attrs) => {
+      dispatch({
+        type: "UPDATE_CHARACTER_ATTRIBUTES",
+        payload: { id, attributes: attrs },
+      });
+    },
+    [dispatch]
+  );
+
   console.log("characters", characters);
 
   return (
@@ -80,6 +91,17 @@ function App() {
       {Object.values(characters)?.map((character) => (
         <section key={character.id} className="character">
           <h2 className="character__header">Character: {character.id}</h2>
+          <div>Skill Checker</div>
+          <div className="character__body">
+            <AttributeControls
+              attributes={character.attributes}
+              setAttributes={(attrs) =>
+                onUpdateCharacterAttrs(character.id, attrs)
+              }
+            />
+            <div>Classes</div>
+            <div>Skills</div>
+          </div>
         </section>
       ))}
     </div>

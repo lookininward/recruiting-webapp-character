@@ -1,3 +1,5 @@
+export const MAX_TOTAL_ATTR = 70;
+
 export const ATTRIBUTE_LIST = [
     'Strength',
     'Dexterity',
