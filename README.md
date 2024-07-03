@@ -97,26 +97,26 @@ Character sheets are defined by the following high-level concepts
 - DONE - Utility classes to apply colours
 
 ## Component: App will be the parent container
-- We need to handle multiple party member and attributes and skills of reach
+- DONE - We need to handle multiple party member and attributes and skills of reach
 - DONE - Reducer pattern with state object, faster key value lookup
 - DONE - Need actions: add party member, update member attributes, update member skills
 - DONE - Method: to create initial character object with default values
-- Var numCharacters: To keep track of number of party members
-- Method: save characters to api (save the entire state object)
-- Method: get characters from api (get the entire state object)
+- DONE - Var numCharacters: To keep track of number of party members
+- DONE - Method: save characters to api (save the entire state object)
+- DONE - Method: get characters from api (get the entire state object)
 - Loop through characters and display sheet for each: Heading, SkillCheck, AttributeControls, ClassList, SkillControls
-- Header is just the id
+- DONE - Header is just the id
 - On initial render, get characters from api and set state
 
 ## Component: Topbar
-- DONE - Indicates number of party members, button to add new party member, button to save game
+- DONE - Indicates number of party members, button to add member, button to save game
 
 ## Component: SkillCheck 
-- For a single party member (selected by user or optimal selected by best fit)
-- Form to select skill, DC, and submit button
-- handleRoll method to roll dice and compare to DC
-- update state when skill, party member, etc. changes
-- Display result of roll
+- DONE - For a single party member (selected by user or optimal selected by best fit)
+- DONE - Form to select skill, DC, and submit button
+- DONE - handleRoll method to roll dice and compare to DC
+- DONE - update state when skill, party member, etc. changes
+- DONE - Display result of roll
 
 ## Component: AttributeControls for a single party member
 - DONE - Attrs for a single party member and a setter function
@@ -126,8 +126,8 @@ Character sheets are defined by the following high-level concepts
 
 ## Component: ClassList for a single party member
 - DONE - Attrs for a single party member
-- DONE - State for the class that we are viewing details for, method to update class that we are viewing
-- DONE - meetsRequirements method to check if the party member meets the requirements for the class
+- DONE - State for class that we are viewing details for, method to update class
+- DONE - meetsRequirements method to check if party member meets class requirements
 - DONE - Render each class in list
 - DONE - Button to toggle view details for each class
 - DONE - Display details if toggled

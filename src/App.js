@@ -1,9 +1,10 @@
 import "./App.css";
-import { useMemo, useReducer, useCallback, useEffect } from "react";
+import { useMemo, useReducer, useCallback } from "react";
 import Topbar from "./components/topbar";
 import AttributeControls from "./components/AttributeControls";
 import ClassList from "./components/ClassList";
 import SkillControls from "./components/SkillControls";
+import SkillCheck from "./components/SkillCheck";
 import { ATTRIBUTE_LIST, SKILL_LIST, REQ_URL } from "./consts";
 
 export const defaultAttrs = ATTRIBUTE_LIST.reduce(
@@ -107,21 +108,21 @@ function App() {
     }
   };
 
-  const getGame = async () => {
-    try {
-      const response = await fetch(REQ_URL, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
-      // console.log("getGame success", data);
-      // todo: parse and set the characters to the game state
-    } catch (error) {
-      console.error("getGame fail", error);
-    }
-  };
+  // const getGame = async () => {
+  //   try {
+  //     const response = await fetch(REQ_URL, {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
+  //     const data = await response.json();
+  //     // console.log("getGame success", data);
+  //     // todo: parse and set the characters to the game state
+  //   } catch (error) {
+  //     console.error("getGame fail", error);
+  //   }
+  // };
 
   // on initial load, get the game state and set it to the characters
   // useEffect(() => {
@@ -141,7 +142,10 @@ function App() {
       {Object.values(characters)?.map((character) => (
         <section key={character.id} className="character">
           <h2 className="character__header">Character: {character.id}</h2>
-          <div>Skill Checker</div>
+          <SkillCheck
+            attributes={character.attributes}
+            skills={character.skills}
+          />
           <div className="character__body">
             <AttributeControls
               attributes={character.attributes}
