@@ -1,36 +1,21 @@
 import "./App.css";
-import { useMemo, useReducer, useCallback } from "react";
+import { useReducer, useCallback, useEffect } from "react";
 import Topbar from "./components/topbar";
 import AttributeControls from "./components/AttributeControls";
 import ClassList from "./components/ClassList";
 import SkillControls from "./components/SkillControls";
 import SkillCheck from "./components/SkillCheck";
-import { ATTRIBUTE_LIST, SKILL_LIST, REQ_URL } from "./consts";
-
-export const defaultAttrs = ATTRIBUTE_LIST.reduce(
-  (acc, attr) => ({ ...acc, [attr]: 0 }),
-  {}
-);
-
-export const defaultSkills = SKILL_LIST.reduce((acc, skill) => {
-  return {
-    ...acc,
-    [skill.name]: 0,
-  };
-}, {});
-
-export const newCharacter = (
-  attributes = defaultAttrs,
-  skills = defaultSkills
-) => ({
-  attributes,
-  skills,
-  id: crypto.randomUUID().toString(),
-});
+import { REQ_URL } from "./consts";
+import { newCharacter } from "./utils";
 
 function App() {
   const partyReducer = (state, action) => {
     switch (action.type) {
+      case "SET_GAME_STATE":
+        return {
+          ...state,
+          ...action.payload,
+        };
       case "ADD_CHARACTER":
         return {
           ...state,
@@ -57,11 +42,7 @@ function App() {
     }
   };
 
-  const initialCharacter = useMemo(() => newCharacter(), []);
-  const [characters, dispatch] = useReducer(partyReducer, {
-    [initialCharacter.id]: initialCharacter,
-  });
-
+  const [characters, dispatch] = useReducer(partyReducer, {});
   const numCharacters = Object.keys(characters).length;
 
   const onClickAddCharacter = useCallback(() => {
@@ -91,8 +72,6 @@ function App() {
     [dispatch]
   );
 
-  console.log("characters", characters);
-
   const saveGame = async () => {
     try {
       const response = await fetch(REQ_URL, {
@@ -102,34 +81,43 @@ function App() {
         },
         body: JSON.stringify(characters),
       });
-      await response.json();
+      const data = await response.json();
+      console.log("saveGame success", data);
     } catch (error) {
       console.error("saveGame fail", error);
     }
   };
 
-  // const getGame = async () => {
-  //   try {
-  //     const response = await fetch(REQ_URL, {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-  //     const data = await response.json();
-  //     // console.log("getGame success", data);
-  //     // todo: parse and set the characters to the game state
-  //   } catch (error) {
-  //     console.error("getGame fail", error);
-  //   }
-  // };
+  const getGame = async () => {
+    try {
+      const response = await fetch(REQ_URL, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const { body } = await response.json();
+      console.log("getGame success", body);
+      // todo: parse and set the characters to the game state
+      // dispatch({
+      //   type: "SET_GAME_STATE",
+      //   payload: body,
+      // });
+    } catch (error) {
+      console.error("getGame fail", error);
+    }
+  };
 
   // on initial load, get the game state and set it to the characters
-  // useEffect(() => {
-  //   getGame();
-  //   todo: set the characters to the game state
-  //   todo: don't add initial character if there are already characters
-  // }, []);
+  useEffect(() => {
+    getGame();
+    // todo: set the characters to the game state
+    // todo: don't add initial character if there are already characters
+    // todo: ability to reset the game state
+    // todo: if no game state, add initial character newCharacter()
+  }, []);
+
+  // console.log("characters", characters);
 
   return (
     <div className="App">
@@ -138,7 +126,7 @@ function App() {
         onClickAddCharacter={onClickAddCharacter}
         onClickSaveGame={saveGame}
       />
-
+      {numCharacters > 1 && <SkillCheck characters={characters} />}
       {Object.values(characters)?.map((character) => (
         <section key={character.id} className="character">
           <h2 className="character__header">Character: {character.id}</h2>

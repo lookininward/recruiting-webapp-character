@@ -104,7 +104,7 @@ Character sheets are defined by the following high-level concepts
 - DONE - Var numCharacters: To keep track of number of party members
 - DONE - Method: save characters to api (save the entire state object)
 - DONE - Method: get characters from api (get the entire state object)
-- Loop through characters and display sheet for each: Heading, SkillCheck, AttributeControls, ClassList, SkillControls
+- DONE - Loop through characters and display sheet for each: Heading, SkillCheck, AttributeControls, ClassList, SkillControls
 - DONE - Header is just the id
 - On initial render, get characters from api and set state
 
