@@ -11,6 +11,8 @@ import { newCharacter } from "./utils";
 function App() {
   const partyReducer = (state, action) => {
     switch (action.type) {
+      case "CLEAR_GAME":
+        return {};
       case "SET_GAME_STATE":
         return {
           ...state,
@@ -98,11 +100,12 @@ function App() {
       });
       const { body } = await response.json();
       console.log("getGame success", body);
-      // todo: parse and set the characters to the game state
+
       // dispatch({
       //   type: "SET_GAME_STATE",
       //   payload: body,
       // });
+      return body;
     } catch (error) {
       console.error("getGame fail", error);
     }
@@ -110,14 +113,28 @@ function App() {
 
   // on initial load, get the game state and set it to the characters
   useEffect(() => {
-    getGame();
+    getGame().then((game) => {
+      // console.log("characters", characters);
+      dispatch({
+        type: "SET_GAME_STATE",
+        payload: game,
+      });
+    });
+
     // todo: set the characters to the game state
     // todo: don't add initial character if there are already characters
     // todo: ability to reset the game state
     // todo: if no game state, add initial character newCharacter()
   }, []);
 
-  // console.log("characters", characters);
+  console.log("characters", characters);
+
+  const onClearGame = async () => {
+    dispatch({
+      type: "CLEAR_GAME",
+      payload: {},
+    });
+  };
 
   return (
     <div className="App">
@@ -125,6 +142,7 @@ function App() {
         numCharacters={numCharacters}
         onClickAddCharacter={onClickAddCharacter}
         onClickSaveGame={saveGame}
+        onClearGame={onClearGame}
       />
       {numCharacters > 1 && <SkillCheck characters={characters} />}
       {Object.values(characters)?.map((character) => (
